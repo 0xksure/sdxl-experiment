@@ -1,5 +1,5 @@
 import torch
-from diffusers import StableDiffusionXLImg2ImgPipeline
+from diffusers import StableDiffusionXLImg2ImgPipelin,AutoPipelineForImage2Image
 from diffusers.utils import load_image
 
 pipe = StableDiffusionXLImg2ImgPipeline.from_pretrained(
@@ -11,5 +11,28 @@ url = "./dfod.jpg"
 init_image = load_image(url).convert("RGB")
 prompt = "Dog in a trippy void, same drawing style, high quality, 8k"
 negative_prompt = "Low quality, blurry image."
-image = pipe(prompt, negative_prompt, strength=0.8, image=init_image).images[0]
+image = pipe(prompt, negative_prompt, strength=0.8,guidance_scale=8.0, image=init_image).images[0]
 image.save("dfod_1.png")
+
+# kadinsky 
+pipeline = AutoPipelineForImage2Image.from_pretrained(
+    "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float16, use_safetensors=True
+)
+pipeline.enable_model_cpu_offload()
+# remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
+pipeline.enable_xformers_memory_efficient_attention()
+
+image2image = pipeline("Astronaut in a jungle, cold color palette, muted colors, detailed, 8k", image=text2image).images[0]
+image2image.save("dfod_2.png")
+
+# comic
+pipeline = AutoPipelineForImage2Image.from_pretrained(
+    "ogkalu/Comic-Diffusion", torch_dtype=torch.float16
+)
+pipeline.enable_model_cpu_offload()
+# remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
+pipeline.enable_xformers_memory_efficient_attention()
+
+# need to include the token "charliebo artstyle" in the prompt to use this checkpoint
+image = pipeline("Astronaut in a jungle, charliebo artstyle", image=image, output_type="latent").images[0]
+image.save("dfod_3.png")
