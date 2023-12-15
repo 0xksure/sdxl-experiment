@@ -12,10 +12,10 @@ pipe.enable_attention_slicing()
 n_steps = 50 
 high_noise_frac = 0.8
 
-init_image = load_image("./pp.jpeg").resize((512, 512))
+init_image = load_image("./dfod.jpg").resize((512, 512))
 
 
-prompt = "Paw patrol on a mission to rescue chicaletta"
+prompt = "Create an NFT version of this image. With more colors but in the same style."
 negative_prompt = "Low quality, blurry image."
 image = pipe(
     prompt=prompt,
@@ -29,7 +29,7 @@ model_id = "stabilityai/stable-diffusion-x4-upscaler"
 pipeline = StableDiffusionUpscalePipeline.from_pretrained(model_id, torch_dtype=torch.float16)
 pipeline = pipeline.to("cuda")
 
-prompt = "Paw Patrol on a mission "
+prompt = "Keep the quality of the image but upscale it by 4x. "
 negative_prompt="bad, deformed, ugly, bad anotomy"
-image = pipe(prompt=prompt, image=image, negative_prompt=n_propmt, strength=0.7).images[0]   
-image.save("paw_patrol.png")
+image = pipe(prompt=prompt, image=image, negative_prompt=negative_prompt, strength=0.7).images[0]   
+image.save("dfod_1.png")
