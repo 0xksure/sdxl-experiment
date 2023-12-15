@@ -9,7 +9,7 @@ pipe = pipe.to("cuda")
 url = "./dfod.jpg"
 
 init_image = load_image(url).convert("RGB")
-prompt = "Dog with blue skin on a pink background. The dog should be looking at the camera. The image should be trippy"
+prompt = "Dog in a trippy void, same drawing style, high quality, 8k"
 negative_prompt = "Low quality, blurry image."
 image = pipe(prompt, negative_prompt, image=init_image).images[0]
 image.save("dfod_1.png")
