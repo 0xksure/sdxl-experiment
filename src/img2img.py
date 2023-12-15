@@ -9,6 +9,7 @@ pipe = pipe.to("cuda")
 url = "./dfod.jpg"
 
 init_image = load_image(url).convert("RGB")
-prompt = "An NFT collection with more colors but in the same style."
-image = pipe(prompt, image=init_image).images[0]
+prompt = "Dog with blue skin on a pink background. The dog should be looking at the camera. The image should be trippy"
+negative_prompt = "Low quality, blurry image."
+image = pipe(prompt, negative_prompt, image=init_image).images[0]
 image.save("dfod_1.png")
