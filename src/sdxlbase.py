@@ -10,7 +10,7 @@ pipe = pipe.to("cuda")
 
 refiner = StableDiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-refiner-1.0",
-    text_encoder_2=pipe.text_encoder_2,
+    text_encoder=pipe.text_encoder_2,
     vae=pipe.vae,
     torch_dtype=torch.float16,
     use_safetensors=True,
