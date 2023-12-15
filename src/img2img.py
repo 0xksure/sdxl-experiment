@@ -18,7 +18,7 @@ image = load_image(url).convert("RGB").resize((512, 512))
 
 # kadinsky 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float8, use_safetensors=True
+    "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float16, use_safetensors=True
 )
 pipeline.to("cuda")
 pipeline.enable_vae_slicing()
