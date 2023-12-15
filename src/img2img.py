@@ -1,5 +1,5 @@
 import torch
-from diffusers import StableDiffusionXLImg2ImgPipelin,AutoPipelineForImage2Image
+from diffusers import StableDiffusionXLImg2ImgPipeline,AutoPipelineForImage2Image
 from diffusers.utils import load_image
 
 pipe = StableDiffusionXLImg2ImgPipeline.from_pretrained(
