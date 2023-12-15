@@ -23,7 +23,8 @@ pipeline = AutoPipelineForImage2Image.from_pretrained(
 pipeline.to("cuda")
 
 image2image = pipeline("Trippy version of dog, same drawing style, on black background", image).images[0]
-image2image.save("dfod_2.png")
+rnd = torch.randint(0, 100000, (1,)).item()
+image2image.save("dfod_"+rnd+".png")
 
 # comic
 pipeline = AutoPipelineForImage2Image.from_pretrained(
@@ -33,4 +34,5 @@ pipeline.to("cuda")
 
 # need to include the token "charliebo artstyle" in the prompt to use this checkpoint
 image = pipeline("Trippy version of dog, same drawing style, cartoon drawing as an NFT", image=image).images[0]
-image.save("dfod_3.png")
+rnd = torch.randint(0, 100000, (1,)).item()
+image.save("dfod_"+rnd+".png")
