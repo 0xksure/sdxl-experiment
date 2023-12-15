@@ -8,7 +8,7 @@ pipe = StableDiffusionXLImg2ImgPipeline.from_pretrained(
 pipe = pipe.to("cuda")
 url = "./dfod.jpg"
 
-init_image = load_image(url).convert("RGB")
+init_image = load_image(url).convert("RGB").resize((512, 512))
 prompt = "Dog in a trippy void, same drawing style, high quality, 8k"
 negative_prompt = "Low quality, blurry image."
 image = pipe(prompt, negative_prompt, strength=0.8,guidance_scale=8.0, image=init_image).images[0]
