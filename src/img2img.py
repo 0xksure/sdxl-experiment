@@ -19,7 +19,7 @@ pipeline = AutoPipelineForImage2Image.from_pretrained(
     "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float16, use_safetensors=True
 )
 
-image2image = pipeline("Astronaut in a jungle, cold color palette, muted colors, detailed, 8k", image=text2image).images[0]
+image2image = pipeline("Astronaut in a jungle, cold color palette, muted colors, detailed, 8k", image).images[0]
 image2image.save("dfod_2.png")
 
 # comic
