@@ -22,7 +22,7 @@ pipeline = AutoPipelineForImage2Image.from_pretrained(
 )
 pipeline.to("cuda")
 
-image2image = pipeline("Trippy version of dog, same drawing style, high quality, 8k", image).images[0]
+image2image = pipeline("Trippy version of dog, same drawing style, on black background, high quality, 8k", image).images[0]
 image2image.save("dfod_2.png")
 
 # comic
