@@ -1,4 +1,6 @@
 from diffusers import AutoPipelineForText2Image
+from diffusers.utils import load_image
+
 import torch
 
 pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo", torch_dtype=torch.float16, variant="fp16")
