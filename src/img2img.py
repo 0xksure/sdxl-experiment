@@ -11,3 +11,4 @@ url = "./dfod.jpg"
 init_image = load_image(url).convert("RGB")
 prompt = "An NFT collection with more colors but in the same style."
 image = pipe(prompt, image=init_image).images
+image.save("dfod_1.png")
