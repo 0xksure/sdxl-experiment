@@ -21,7 +21,6 @@ image = pipe(
     image=init_image,
     num_inference_steps=n_steps,
     denoising_end=high_noise_frac,
-    output_type="latent",
 ).images[0]
 
 
