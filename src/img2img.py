@@ -2,7 +2,7 @@ import torch
 from diffusers import StableDiffusionXLImg2ImgPipeline,AutoPipelineForImage2Image
 from diffusers.utils import load_image
 
-url = "./dfod.jpg"
+url = "./skye.jpg"
 image = load_image(url).convert("RGB").resize((512, 512))
 
 # pipeline = StableDiffusionXLImg2ImgPipeline.from_pretrained(
@@ -22,7 +22,7 @@ pipeline = AutoPipelineForImage2Image.from_pretrained(
 )
 pipeline.to("cuda")
 
-image2image = pipeline("Trippy version of dog, same drawing style, on black background", image).images[0]
+image2image = pipeline("Skye with a christmas hat on. 8k", image).images[0]
 rnd = torch.randint(0, 100000, (1,)).item()
 image2image.save("dfod_"+str(rnd)+".png")
 
@@ -33,6 +33,6 @@ pipeline = AutoPipelineForImage2Image.from_pretrained(
 pipeline.to("cuda")
 
 # need to include the token "charliebo artstyle" in the prompt to use this checkpoint
-image = pipeline("Trippy version of dog, same drawing style, cartoon drawing as an NFT", image=image).images[0]
+image = pipeline("Skye with a christmas hat on. 8k", image=image).images[0]
 rnd = torch.randint(0, 100000, (1,)).item()
 image.save("dfod_"+str(rnd)+".png")
