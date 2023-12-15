@@ -6,6 +6,7 @@ pipe = StableDiffusionXLImg2ImgPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-refiner-1.0", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipe = pipe.to("cuda")
+pipe.enable_xformers_memory_efficient_attention()
 url = "./dfod.jpg"
 
 init_image = load_image(url).convert("RGB").resize((512, 512))
@@ -19,6 +20,7 @@ pipeline = AutoPipelineForImage2Image.from_pretrained(
     "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float16, use_safetensors=True
 )
 pipeline.to("cuda")
+pipeline.enable_xformers_memory_efficient_attention()
 
 image2image = pipeline("Astronaut in a jungle, cold color palette, muted colors, detailed, 8k", image).images[0]
 image2image.save("dfod_2.png")
@@ -28,6 +30,7 @@ pipeline = AutoPipelineForImage2Image.from_pretrained(
     "ogkalu/Comic-Diffusion", torch_dtype=torch.float16
 )
 pipeline.to("cuda")
+pipeline.enable_xformers_memory_efficient_attention()
 
 # need to include the token "charliebo artstyle" in the prompt to use this checkpoint
 image = pipeline("Astronaut in a jungle, charliebo artstyle", image=image, output_type="latent").images[0]
