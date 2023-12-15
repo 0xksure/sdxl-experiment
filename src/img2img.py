@@ -2,22 +2,23 @@ import torch
 from diffusers import StableDiffusionXLImg2ImgPipeline,AutoPipelineForImage2Image
 from diffusers.utils import load_image
 
-pipe = StableDiffusionXLImg2ImgPipeline.from_pretrained(
-    "stabilityai/stable-diffusion-xl-refiner-1.0", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
-)
-pipe = pipe.to("cuda")
-pipe.enable_vae_slicing()
 url = "./dfod.jpg"
+image = load_image(url).convert("RGB").resize((512, 512))
 
-init_image = load_image(url).convert("RGB").resize((512, 512))
-prompt = "Dog in a trippy void, same drawing style, high quality, 8k"
-negative_prompt = "Low quality, blurry image."
-image = pipe(prompt, negative_prompt, strength=0.8,guidance_scale=8.0, image=init_image).images[0]
-image.save("dfod_1.png")
+# pipeline = StableDiffusionXLImg2ImgPipeline.from_pretrained(
+#     "stabilityai/stable-diffusion-xl-refiner-1.0", torch_dtype=torch.float8, variant="fp16", use_safetensors=True
+# )
+# pipeline = pipe.to("cuda")
+# pipeline.enable_vae_slicing()
+
+# prompt = "Dog in a trippy void, same drawing style, high quality, 8k"
+# negative_prompt = "Low quality, blurry image."
+# image = pipe(prompt, negative_prompt, strength=0.8,guidance_scale=8.0, image=init_image).images[0]
+# image.save("dfod_1.png")
 
 # kadinsky 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float16, use_safetensors=True
+    "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float8, use_safetensors=True
 )
 pipeline.to("cuda")
 pipeline.enable_vae_slicing()
