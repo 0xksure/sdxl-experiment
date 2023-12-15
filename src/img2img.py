@@ -22,7 +22,7 @@ pipeline = AutoPipelineForImage2Image.from_pretrained(
 )
 pipeline.to("cuda")
 
-image2image = pipeline("Astronaut in a jungle, cold color palette, muted colors, detailed, 8k", image).images[0]
+image2image = pipeline("Trippy version of dog, same drawing style, high quality, 8k", image).images[0]
 image2image.save("dfod_2.png")
 
 # comic
@@ -32,5 +32,5 @@ pipeline = AutoPipelineForImage2Image.from_pretrained(
 pipeline.to("cuda")
 
 # need to include the token "charliebo artstyle" in the prompt to use this checkpoint
-image = pipeline("Astronaut in a jungle, charliebo artstyle", image=image, output_type="latent").images[0]
+image = pipeline("Trippy version of dog, same drawing style, high quality, 8k", image=image).images[0]
 image.save("dfod_3.png")
