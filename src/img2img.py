@@ -2,7 +2,7 @@ import torch
 from diffusers import StableDiffusionXLImg2ImgPipeline,AutoPipelineForImage2Image
 from diffusers.utils import load_image
 
-url = "./skye.jpg"
+url = "./skye.jpeg"
 image = load_image(url).convert("RGB").resize((512, 512))
 
 # pipeline = StableDiffusionXLImg2ImgPipeline.from_pretrained(
